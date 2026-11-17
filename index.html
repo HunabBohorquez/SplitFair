@@ -1,0 +1,100 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitFair - Liquidador Inteligente de Gastos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container header-content">
+            <h1>💸 SplitFair</h1>
+            <div class="header-actions">
+                <button id="btn-load-demo" class="btn btn-secondary">Cargar Escenario Demo</button>
+                <button id="btn-clear-data" class="btn btn-danger">Borrar Todo</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container layout">
+        <aside class="sidebar">
+            <section class="card">
+                <h2>👥 Participantes</h2>
+                <form id="form-participant" class="flex-form">
+                    <input type="text" id="input-participant" placeholder="Nombre del integrante..." required autocomplete="off">
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+                <ul id="list-participants" class="item-list"></ul>
+            </section>
+
+            <section class="card">
+                <h2>📊 Balances Netos</h2>
+                <div class="table-responsive">
+                    <table id="table-balances">
+                        <thead>
+                            <tr>
+                                <th>Participante</th>
+                                <th>Pagó</th>
+                                <th>Consumió</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-balances"></tbody>
+                    </table>
+                </div>
+            </section>
+        </aside>
+
+        <section class="main-content">
+            <section class="card">
+                <h2>📝 Registrar Gasto</h2>
+                <form id="form-expense" class="grid-form">
+                    <div class="form-group">
+                        <label for="exp-desc">Descripción</label>
+                        <input type="text" id="exp-desc" placeholder="Ej. Cena, Gasolina..." required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="exp-amount">Monto Total ($)</label>
+                        <input type="number" id="exp-amount" step="0.01" min="0.01" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exp-payer">Pagado por</label>
+                        <select id="exp-payer" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exp-split-type">Modo de División</label>
+                        <select id="exp-split-type">
+                            <option value="equal">Equitativo</option>
+                            <option value="percentage">Porcentajes (%)</option>
+                            <option value="exact">Montos Exactos ($)</option>
+                        </select>
+                    </div>
+                    <div id="split-container" class="split-details full-width">
+                        <!-- Generado dinámicamente -->
+                    </div>
+                    <div class="full-width">
+                        <button type="submit" class="btn btn-primary w-100">Guardar Gasto</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card">
+                <div class="flex-between">
+                    <h2>🔀 Transferencias Mínimas</h2>
+                    <button id="btn-copy-summary" class="btn btn-secondary">📋 Copiar Resumen</button>
+                </div>
+                <div id="settlements-container" class="settlements-grid"></div>
+            </section>
+
+            <section class="card">
+                <h2>🧾 Historial de Gastos</h2>
+                <ul id="list-expenses" class="item-list expenses-list"></ul>
+            </section>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
